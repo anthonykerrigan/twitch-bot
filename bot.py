@@ -9,16 +9,16 @@ prefix=os.getenv('PREFIX')
 channel=os.getenv('CHANNEL')
 nick=os.getenv('NICK')
 
-class Bot(commands.bot): 
+class Bot(commands.Bot):
 
     def __init__(self):
-        super().__init__(token=twitch_token, prefix=prefix, initial_channels=channel)
-
+        super().__init__(token=twitch_token, prefix=prefix, initial_channels=[channel])
 
     async def event_ready(self):
+        # Notify us when everything is ready!
         print(f'Logged in as | {self.nick}')
-        print(f'User ID is | {self. user_id}')
-    
+        print(f'User id is | {self.user_id}')
+
     async def event_message(self, message):
         if message.echo:
             return
