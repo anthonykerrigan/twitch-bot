@@ -28,7 +28,20 @@ class Bot(commands.Bot):
     @commands.command()
     async def hello(self, ctx: commands.Context):
         await ctx.send(f'Hello {ctx.author.name}!')
+        
+    @commands.command()
+    async def cmds(self, ctx: commands.Context):
+        await ctx.send(f'{commands}')
 
+    @commands.command()
+    async def followers(self, ctx):
+        users = await ctx.channel.get_users(ctx.channel.name)
+        count = await ctx.channel.get_followers(users[0].id, count = True)
+        await ctx.send(f"There are {count:,} people following {ctx.channel.name.capitalize()}!")
+
+    @commands.command()
+    async def game(self, ctx: commands.Context):
+        await ctx.send(f"The current game is {ctx.ChannelInfo}!")
 
 bot = Bot()
 bot.run()
